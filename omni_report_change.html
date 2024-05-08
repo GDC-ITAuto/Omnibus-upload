@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omnibus</title>
+<link
+            rel="icon"
+            href=
+"https://th.bing.com/th/id/OIP.wVDWMA8IP1rRmTJqEtSQpAHaGW?rs=1&pid=ImgDetMain"
+            type="image/x-icon"/>
+
+<style>
+    /* CSS styles */
+
+    .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            text-align: center;
+            background-image: url('https://media.giphy.com/media/3o85xGdsSCHfTPBJok/giphy.gif');
+
+        }
+
+        .header img {
+            width: 70px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .header h1 {
+            display: inline-block;
+            margin: 0;
+            vertical-align: middle;
+            color: rgb(0, 2, 0);
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        /* background-image: url('https://www.ibm.com/design/language/static/d364f8541a48fa723bb502e883144239/040c5/2306_73_IDL_gallery.jpg'); */
+        background-size: cover;
+        font-size: 15px; /* Adjust the font size */
+        overflow-x: hidden; /* Hide horizontal scrollbar initially */
+    }
+    .container {
+        max-width: 1200px; /* Increased width to accommodate both containers */
+        margin: 0 auto;
+        padding: 20px;
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between elements */
+    }
+
+    .metrics-container table {
+    font-size: 14px; /* Decrease the font size */
+    }
+    .metrics-container th,
+    .metrics-container td {
+    padding: 8px; /* Adjust padding */
+    }
+
+    .metrics-container {
+        width: 100%; /* Width of the metrics container */
+        padding: 30px; /* Increased padding for the metrics container */
+        border: 1px solid rgba(0, 0, 0, 0.2); /* Transparent border */
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+    }
+    .report-container {
+        width: 100%; /* Width of the report container */
+        padding: 30px; /* Increased padding for the report container */
+        border: 1px solid rgba(0, 0, 0, 0.2); /* Transparent border */
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+    }
+    #report, #history {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .box-container {
+        width: 48%; /* Adjusted width to fit two boxes per row */
+        margin-right: 2%; /* Adjusted margin to create space between boxes */
+    }
+    .box {
+    border: 1px solid #ddd; /* Border color */
+    padding: 8px; /* Padding inside the box */
+    margin-bottom: 10px; /* Margin between boxes */
+    background-color: white; /* Set the background color to white */
+    border-radius: 5px; /* Optional: Add rounded corners to the box */
+    min-height: 45px; /* Adjust this value to increase the minimum height of the boxes */
+
+}
+
+    .parameter {
+        font-weight: bold;
+    }
+    .value, .expected, .comparison {
+        font-style: italic;
+    }
+    .match {
+        color: green; /* Make "Match" text green */
+    }
+    .mismatch {
+        color: red; /* Make "Mismatch" text red */
+    }
+
+    footer {
+    padding: 15px;
+    background-color: black; /* Black background color */
+    color: white; /* White text color */
+    text-align: center; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    /* position: fixed; */
+    bottom: 0;
+    width: 99%; /* Make the footer span the full width of the page */
+}
+
+</style>
+
+
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://pngimg.com/uploads/ibm/ibm_PNG19655.png" alt="IBM Logo" class="logo" onclick="openLink('https://www.ibm.com/in-en')">
+        <h1>Netcool Omnibus</h1>
+    </div>
+
+<div class="container">
+    <div class="metrics-container">
+        <h3>Parameter Descriptions</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Netcool Omnibus Version</td>
+                <td>Most Recent Version of Netcool Omnibus</td>
+            </tr>
+            <tr>
+                <td>Status Inserts</td>
+                <td>Number of inserts in the alerts.status table in the last 5 minutes</td>
+            </tr>
+            <tr>
+                <td>Trigger Count</td>
+                <td>Count of Number of Triggers in the Netcool Omnibus ObjectServer</td>
+            </tr>
+            <tr>
+                <td>Trigger Time</td>
+                <td>The Exact measure of load that ObjectServer triggers are placing on the ObjectServer in each granularity cycle of 60 seconds</td>
+            </tr>
+            <tr>
+                <td>Profiling Enabled</td>
+                <td>With profiling enabled, the ObjectServer will write profiling information to its log files at the end of each granularity period (default 60 seconds).</td>
+            </tr>
+            <tr>
+                <td>Profiling Period</td>
+                <td>In each granularity cycle of 60 seconds, the ObjectServer will write a summary of time it has spent interacting with each external client and total time for that granularity period called “report period”.</td>
+            </tr>
+            <tr>
+                <td>Procedures Count</td>
+                <td>Count of Number of Procedures in the Netcool Omnibus ObjectServer</td>
+            </tr>
+            <tr>
+                <td>EventCount</td>
+                <td>Number of rows in the alerts.status table</td>
+            </tr>
+            <tr>
+                <td>DetailCount</td>
+                <td>Number of rows in the alerts.details table</td>
+            </tr>
+            <tr>
+                <td>JournalCount</td>
+                <td>Number of rows in the alerts.journal table</td>
+            </tr>
+            <tr>
+                <td>ObjectServer Connections</td>
+                <td>Number of connections into the ObjectServer</td>
+            </tr>
+        </table>
+    </div>
+    <div class="report-container">
+        <h2>GDC HealthCheck Report</h2>
+        <button id="fileButton">Choose File and Generate Report</button>
+        <button onclick="downloadAsPdf()">Download PDF</button>
+        <h3>Current Report</h3>
+        <div id="report"></div> <!-- Changed to a div instead of a table -->
+        
+    </div>
+    
+</div>
+<footer>
+    <p><strong>Disclaimer:</strong> The report tries to compare the important parameters to the recommended values that define performance of the system. A match of the values however does not necessarily guarantee that the system is problem-free. It is recommended that a more comprehensive review of the system be done by our SMEs at the GDC.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    // JavaScript code
+    document.getElementById('fileButton').addEventListener('click', function() {
+    // Create a hidden file input element
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none'; // Hide the file input element
+    
+    // Add an event listener to handle file selection
+    fileInput.addEventListener('change', function(event) {
+        // Once the file is selected, call the handleFile function
+        handleFile(event.target.files[0]);
+    });
+    
+    // Append the file input element to the body and simulate a click
+    document.body.appendChild(fileInput);
+    fileInput.click();
+});
+
+function handleFile(file) {
+    // Check if a file was provided as an argument
+    if (!file) {
+        // If no file is provided, use the file input element to get the file
+        var fileInput = document.getElementById('fileInput');
+        file = fileInput.files[0];
+    }
+
+    // Ensure a file was selected
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+            var contents = event.target.result;
+            var result = parseAndCompare(contents);
+            saveToHistory(result);
+        };
+
+        reader.readAsText(file);
+    }
+}
+
+
+function parseAndCompare(contents) {
+    var data = JSON.parse(contents); // Parse JSON content
+
+    // Define expected values and comparisons
+    var expectedValues = {
+        "ProceduresCount": {expected: "-", comparison: "-"},
+        "NetcoolOmnibusVersion": {expected: "8.1.0.5"+"", comparison: "version"},
+        "JournalCount": {expected: "<150000", comparison: "less"},
+        "DetailCount": {expected: "<120000", comparison: "less"},
+        "ProfilingEnabled":  {expected: "TRUE", comparison: "match"},
+        "ObjectServerConnections": {expected: "<1024", comparison: "less"},
+        "EventCount": {expected: "<100000", comparison: "less"},
+        "TriggersTime": {expected: "<60s", comparison: "less"},
+        "StatusInserts": {expected: "-", comparison: "-"},
+        "ProfilingPeriod": {expected: "<60s", comparison: "less"},
+        "TriggersCount": {expected: "-", comparison: "-"}
+    };
+
+    // Generate report
+    var matches = 0;
+    var totalParams = 0;
+    var reportHTML = ""; // HTML string for the report
+    for (var key in data) {
+        var value = data[key];
+        var comparison;
+        var expectedValue = expectedValues[key].expected;
+        
+        // Check if TriggersCount, ProceduresCount, or StatusInserts is a numerical value
+        if (key === "TriggersCount" || key === "ProceduresCount" || key === "StatusInserts") {
+            if (!isNaN(value)) {
+                comparison = "Match";
+                matches++;
+            } else {
+                comparison = "-";
+            }
+            totalParams++;
+        }
+        // Check NetcoolOmnibusVersion
+        else if (key === "NetcoolOmnibusVersion") {
+            if (value === "8.1.0.5") {
+                comparison = "<span class='current-version match'>" + "Match" + "</span>";
+                matches++;
+            } else {
+                comparison = "<span class='current-version mismatch'>" + "Mismatch" + "</span>";
+            }
+            totalParams++;
+        }
+        // Other parameters
+        else {
+            if (expectedValues[key].comparison === 'range') {
+                // Range comparison
+                var min = expectedValue.min;
+                var max = expectedValue.max;
+                if (parseFloat(value) >= min && parseFloat(value) <= max) {
+                    comparison = "Match";
+                    matches++;
+                } else {
+                    comparison = "Mismatch";
+                }
+                totalParams++;
+                expectedValue = expectedValue.min + " - " + expectedValue.max;
+            } else if (expectedValues[key].comparison === 'less') {
+                // Less comparison
+                if (parseFloat(value) < parseFloat(expectedValue.substr(1))) {
+                    comparison = "Match";
+                    matches++;
+                } else {
+                    comparison = "Mismatch";
+                }
+                totalParams++;
+            } else if (expectedValues[key].comparison === 'version') {
+                // Version comparison
+                comparison = checkVersion(value);
+                if (comparison.includes("green")) {
+                    matches++;
+                }
+                totalParams++;
+            } else if (expectedValues[key].comparison === 'match') {
+                // Exact comparison
+                if (value === expectedValue) {
+                    comparison = "Match";
+                    matches++;
+                } else {
+                    comparison = "Match";
+                }
+                totalParams++;
+            } else {
+                // Default comparison
+                comparison = expectedValues[key].comparison;
+                totalParams++;
+            }
+        }
+        // Update comparison result in data object
+        data[key] = { value: value, expectedValue: expectedValue, comparison: comparison };
+
+        // Append HTML for this parameter to the reportHTML
+        reportHTML += "<div class='box-container'><div class='box'><div class='parameter'>" + key + "</div><div class='value'>" +" Current Value:  "+ value + "</div><div class='expected'>" +" Reference Value:  " + expectedValue + "</div><div class='comparison "  +(comparison === "Match" ? "match" : "mismatch") + "'>" + comparison + "</div></div></div>";
+    }
+
+    // Add row for result and percentage
+    var percentage = (matches / totalParams) * 100;
+    var result = matches + " out of " + totalParams + " parameters matched (" + percentage.toFixed(2) + "%)";
+    document.getElementById('report').innerHTML = reportHTML; // Set the report HTML
+    return result;
+}
+
+function saveToHistory(result) {
+    var timestamp = new Date().toLocaleString();
+    var historyData = JSON.parse(localStorage.getItem('comparisonHistory')) || [];
+    historyData.push({timestamp: timestamp, result: result});
+    localStorage.setItem('comparisonHistory', JSON.stringify(historyData));
+    displayHistory();
+    displayChart(historyData);
+}
+
+function displayHistory() {
+    var historyData = JSON.parse(localStorage.getItem('comparisonHistory')) || [];
+    var historyTable = document.getElementById('history');
+    historyTable.innerHTML = "<tr><th>Timestamp</th><th>Result</th></tr>";
+    historyData.forEach(function(item) {
+        historyTable.innerHTML += "<tr><td>" + item.timestamp + "</td><td>" + item.result + "</td></tr>";
+    });
+}
+
+function displayChart(historyData) {
+    var chartDiv = document.getElementById('chart');
+    chartDiv.innerHTML = "";
+
+    historyData.forEach(function(item) {
+        var percentage = parseFloat(item.result.match(/(\d+\.\d+)%/)[1]);
+        var barColor = percentage >= 100 ? 'green' : 'lightgreen';
+        if (percentage === 0) {
+            barColor = 'red';
+        }
+        var barHeight = Math.max(percentage, 1); // Minimum height to show something
+        var bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.height = barHeight + '%';
+        bar.style.backgroundColor = barColor;
+        chartDiv.appendChild(bar);
+    });
+}
+
+function clearHistory() {
+    localStorage.removeItem('comparisonHistory');
+    displayHistory();
+    displayChart([]);
+}
+
+function downloadAsPdf() {
+    window.print();
+}
+
+function checkVersion(version) {
+    var expectedVersion = '8.1.0.30'; // Expected version
+
+    // Check if the version string starts with ">"
+    if (version.startsWith('>')) {
+        var actualVersion = version.substring(1); // Remove the ">" symbol
+        return parseFloat(actualVersion) > parseFloat(expectedVersion)
+            ? "<span class='match'>" + "Match" + "</span>"
+            : "<span class='mismatch'>" + "Mismatch" + "</span>";
+    } else {
+        // Split the version strings into arrays of integers
+        var actualVersionParts = version.split('.').map(Number);
+        var expectedVersionParts = expectedVersion.split('.').map(Number);
+
+        // Compare each part of the version number
+        // Compare each part of the version number
+for (var i = 0; i < Math.max(actualVersionParts.length, expectedVersionParts.length); i++) {
+    // If the actual version part is greater than the expected version part, return "Match"
+    if ((actualVersionParts[i] || 0) > (expectedVersionParts[i] || 0)) {
+        return "<span class='match'>" + "Match" + "</span>";
+    }
+    // If the actual version part is less than the expected version part, return "Mismatch"
+    else if ((actualVersionParts[i] || 0) < (expectedVersionParts[i] || 0)) {
+        return "<span class='mismatch'>" + "Mismatch" + "</span>";
+    }
+}
+
+
+        // If all parts are equal, return "Match"
+        return "<span class='match'>" + "Match" + "</span>";
+    }
+}
+
+
+// Load history from local storage on page load
+window.onload = function() {
+    displayHistory();
+    var historyData = JSON.parse(localStorage.getItem('comparisonHistory')) || [];
+    displayChart(historyData);
+};
+</script>
+</body>
+</html>
